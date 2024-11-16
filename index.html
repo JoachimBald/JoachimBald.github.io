@@ -17,7 +17,7 @@
             padding: 20px;
         }
         .headshot {
-            width: 200px; /* Adjust size as needed */
+            width: 150px; /* Adjust size as needed */
             height: auto;
             border-radius: 50%; /* Makes the image circular */
             object-fit: cover; /* Ensures the image fits correctly within the circle */
@@ -29,7 +29,46 @@
             max-width: 800px; /* Adjust max width as needed */
             text-align: center;
         }
+        .message-box-container {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .arrow {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        .message-box {
+            width: 75%;
+            min-height: 60px; /* Approx. 3 lines of text */
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            resize: none;
+            font-size: 16px;
+            color: grey;
+        }
+        .message-box:focus {
+            color: black;
+        }
     </style>
+    <script>
+        function clearPlaceholder(input) {
+            if (input.value === "Type your question here ...") {
+                input.value = "";
+                input.style.color = "black";
+            }
+        }
+        function restorePlaceholder(input) {
+            if (input.value === "") {
+                input.value = "Type your question here ...";
+                input.style.color = "grey";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="header">
@@ -38,6 +77,10 @@
     </div>
     <div class="content">
         <p>This is the public web interface for my course chatbot.</p>
+    </div>
+    <div class="message-box-container">
+        <span class="arrow">➡️</span>
+        <textarea class="message-box" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">Type your question here ...</textarea>
     </div>
 </body>
 </html>
